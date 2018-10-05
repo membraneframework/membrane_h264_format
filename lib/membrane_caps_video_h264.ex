@@ -6,16 +6,16 @@ defmodule Membrane.Caps.Video.H264 do
   @typedoc """
   Width of single frame in pixels.
 
-  Allowed values may be restricted by used profile. For profiles using
-  4:2:0 chroma subsampling must have dimensions divisible by 2.
+  Allowed values may be restricted by used encoding parameters, for example, when using
+  4:2:0 chroma subsampling dimensions must be divisible by 2.
   """
   @type width_t :: pos_integer()
 
   @typedoc """
   Height of single frame in pixels.
 
-  Allowed values may be restricted by used profile. For profiles using
-  4:2:0 chroma subsampling must have dimensions divisible by 2.
+  Allowed values may be restricted by used encoding parameters, for example, when using
+  4:2:0 chroma subsampling dimensions must be divisible by 2.
   """
   @type height_t :: pos_integer()
 
