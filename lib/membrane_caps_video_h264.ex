@@ -30,15 +30,18 @@ defmodule Membrane.Caps.Video.H264 do
   @typedoc """
   Describes h264 stream format.
 
-  Byte-stream format is suitable for writing to file or streaming with MPEG-TS.
+  Byte-stream format (often reffered as Annex B because it is defined in Annex B
+  of [ITU-T H.264 Recommendation](http://www.itu.int/rec/T-REC-H.264-201704-I/en))
+  is suitable for writing to file or streaming with MPEG-TS.
   In this format each NAL unit is preceded by three or four-byte start code (`0x(00)000001`)
   that helps to identify boundaries.
 
-  AVC and AVC3 are described by ISO/IEC 14496-15. They are more suitable for placing in containers
+  AVC and AVC3 are described by ISO/IEC 14496-15. Such streams lack the start codes,
+  but are preceded with length of NAL unit. They are more suitable for placing in containers
   (e.g. is used by QuickTime (.mov), MP4, Matroska and FLV). AVC and AVC3 differ in how PPS and SPS
   (Picture Parameter Set and Sequence Parameter Set) are transported.
   """
-  @type stream_format_t :: :avc | :avc3 | :byte_stream
+  @type stream_format_t :: :avc1 | :avc3 | :byte_stream
 
   @typedoc """
   Describes whether and how buffers are aligned.
