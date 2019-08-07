@@ -1,6 +1,6 @@
 # Membrane Multimedia Framework: H264 video format definition
 
-[![Build Status](https://travis-ci.com/membraneframework/membrane-caps-video-h264.svg?branch=master)](https://travis-ci.com/membraneframework/membrane-caps-video-h264)
+[![CircleCI](https://circleci.com/gh/membraneframework/membrane-caps-video-h264.svg?style=svg)](https://circleci.com/gh/membraneframework/membrane-caps-video-h264)
 
 This package provides H264 video format definition (so-called caps) for the
 [Membrane Multimedia Framework](https://membraneframework.org).
