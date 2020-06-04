@@ -57,6 +57,18 @@ defmodule Membrane.Caps.Video.H264 do
   @type alignment_t :: :au | :nal | :none
 
   @typedoc """
+  When alignment is set to `:au`, determines whether buffers have NALu info attached in metadata.
+
+  If true, each buffer contains the NAL units list under `metadata.h264.nalus`. The list consists of
+  maps with the following entries:
+  - `prefixed_poslen: {pos, len}` - position and length of the NALu within the payload
+  - `unprefixed_poslen: {pos, len}` - as above, but omits Annex B prefix
+  - `metadata: metadata` - metadata that would be merged into the buffer metadata
+    if `alignment` was `:nal`.
+  """
+  @type nalu_in_metadata_t :: boolean()
+
+  @typedoc """
   Profiles defining constraints for encoders and requirements from decoders decoding such stream
   """
   @type profile_t ::
@@ -77,9 +89,10 @@ defmodule Membrane.Caps.Video.H264 do
           framerate: framerate_t(),
           stream_format: stream_format_t(),
           alignment: alignment_t(),
+          nalu_in_metadata?: nalu_in_metadata_t(),
           profile: profile_t()
         }
 
-  @enforce_keys [:width, :height, :framerate, :stream_format, :alignment, :profile]
-  defstruct [:width, :height, :framerate, :stream_format, :alignment, :profile]
+  @enforce_keys [:width, :height, :framerate, :stream_format, :profile]
+  defstruct @enforce_keys ++ [alignment: :au, nalu_in_metadata?: false]
 end
