@@ -9,6 +9,7 @@ defmodule Membrane.RemoteStream.H264 do
           decoder_configuration_record: binary()
         }
 
+  @spec parse!(t()) :: Membrane.H264.DecoderConfiguration.t()
   def parse!(%__MODULE__{decoder_configuration_record: dcr}) do
     {:ok, result} = Membrane.H264.DecoderConfiguration.parse(dcr)
     result

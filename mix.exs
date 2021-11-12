@@ -39,7 +39,9 @@ defmodule Membrane.Caps.Video.H264.Mixfile do
 
   defp deps do
     [
-      {:ex_doc, "~> 0.19", only: :dev, runtime: false}
+      {:ex_doc, "~> 0.24", only: :dev, runtime: false},
+      {:dialyxir, "~> 1.1", only: :dev, runtime: false},
+      {:credo, "~> 1.5", only: :dev, runtime: false}
     ]
   end
 end
