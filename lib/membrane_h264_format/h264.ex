@@ -1,4 +1,4 @@
-defmodule Membrane.Caps.Video.H264 do
+defmodule Membrane.H264 do
   @moduledoc """
   This module provides caps struct for H264 video stream.
   """
