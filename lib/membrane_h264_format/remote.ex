@@ -1,4 +1,4 @@
-defmodule Membrane.RemoteStream.H264 do
+defmodule Membrane.H264.RemoteStream do
   @moduledoc """
   Format definition for H264 video streams with decoder configuration transmitted out of band.
 
