@@ -1,6 +1,6 @@
 defmodule Membrane.H264 do
   @moduledoc """
-  This module provides caps struct for H264 video stream.
+  This module provides format definition for H264 video stream
   """
 
   @typedoc """
