@@ -1,6 +1,6 @@
 # Membrane Multimedia Framework: H264 video format definition
 
-[![CircleCI](https://circleci.com/gh/membraneframework/membrane-caps-video-h264.svg?style=svg)](https://circleci.com/gh/membraneframework/membrane-caps-video-h264)
+[![CircleCI](https://circleci.com/gh/membraneframework/membrane_h264_format.svg?style=svg)](https://circleci.com/gh/membraneframework/membrane_h264_format)
 
 This package provides H264 video format definition (so-called caps) for the
 [Membrane Multimedia Framework](https://membraneframework.org).
@@ -20,7 +20,7 @@ reason, just add the following line to your `deps` in the `mix.exs` and run
 ```
 ## Copyright and License
 
-Copyright 2018, [Software Mansion](https://swmansion.com/?utm_source=git&utm_medium=readme&utm_campaign=membrane)
+Copyright 2021, [Software Mansion](https://swmansion.com/?utm_source=git&utm_medium=readme&utm_campaign=membrane)
 
 [![Software Mansion](https://logo.swmansion.com/logo?color=white&variant=desktop&width=200&tag=membrane-github)](https://swmansion.com/?utm_source=git&utm_medium=readme&utm_campaign=membrane)
 
