@@ -8,22 +8,38 @@ defmodule Membrane.H264.Mixfile do
     [
       app: :membrane_h264_format,
       version: @version,
-      elixir: "~> 1.13",
+      elixir: "~> 1.12",
+      elixirc_paths: elixirc_paths(Mix.env()),
+      start_permanent: Mix.env() == :prod,
+      deps: deps(),
+      dialyzer: dialyzer(),
+
+      # hex
       description: "Membrane Multimedia Framework (H264 video format definition)",
       package: package(),
+
+      # docs
       name: "Membrane H264 Format",
       source_url: @github_url,
-      docs: docs(),
-      deps: deps(),
-      dialyzer: dialyzer()
+      homepage_url: "https://membraneframework.org",
+      docs: docs()
     ]
   end
 
-  defp docs do
+  def application do
     [
-      main: "readme",
-      extras: ["README.md", "LICENSE"],
-      source_ref: "v#{@version}"
+      extra_applications: []
+    ]
+  end
+
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_env), do: ["lib"]
+
+  defp deps do
+    [
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
+      {:dialyxir, ">= 0.0.0", only: :dev, runtime: false},
+      {:credo, ">= 0.0.0", only: :dev, runtime: false}
     ]
   end
 
@@ -43,7 +59,7 @@ defmodule Membrane.H264.Mixfile do
   defp package do
     [
       maintainers: ["Membrane Team"],
-      licenses: ["Apache 2.0"],
+      licenses: ["Apache-2.0"],
       links: %{
         "GitHub" => @github_url,
         "Membrane Framework Homepage" => "https://membraneframework.org"
@@ -51,11 +67,13 @@ defmodule Membrane.H264.Mixfile do
     ]
   end
 
-  defp deps do
+  defp docs do
     [
-      {:ex_doc, "~> 0.24", only: :dev, runtime: false},
-      {:dialyxir, "~> 1.1", only: :dev, runtime: false},
-      {:credo, "~> 1.5", only: :dev, runtime: false}
+      main: "readme",
+      extras: ["README.md", "LICENSE"],
+      formatters: ["html"],
+      source_ref: "v#{@version}",
+      nest_modules_by_prefix: [Membrane.Template]
     ]
   end
 end
