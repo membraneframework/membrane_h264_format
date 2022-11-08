@@ -28,18 +28,14 @@ defmodule Membrane.H264 do
   @type framerate_t :: {frames :: pos_integer, seconds :: pos_integer}
 
   @typedoc """
-  Describes h264 stream format.
+  Describes h264 NALu format.
 
-  `:anexb` (defined in Annex B of [ITU-T H.264 Recommendation](http://www.itu.int/rec/T-REC-H.264-201704-I/en))
+  `:annex_b` (defined in Annex B of [ITU-T H.264 Recommendation](http://www.itu.int/rec/T-REC-H.264-201704-I/en))
   is suitable for writing to a file or streaming with MPEG-TS.
   In this format each NAL unit is preceded by three or four-byte start code (`0x(00)000001`)
   that helps to identify boundaries.
-
-  `:length_prefix` is described by ISO/IEC 14496-15. In such stream NALUs lack the start codes,
-  but are preceded with their length. `:length_prefix` streams are more suitable for placing in containers
-  (e.g. they are used by QuickTime (.mov), MP4, Matroska and FLV).
   """
-  @type nalu_format_t :: :anexb | :length_prefix
+  @type nalu_format_t :: :annex_b
 
   @typedoc """
   Describes whether and how buffers are aligned.
