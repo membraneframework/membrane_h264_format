@@ -8,8 +8,8 @@ defmodule Membrane.H264.RemoteStream do
   * H264 depayloaded from an RTP stream which is always aligned to
   NAL units.
   """
-  @enforce_keys [:alignment]
-  defstruct [:decoder_configuration_record, nalu_format: :annex_b] ++ @enforce_keys
+  @enforce_keys [:alignment, :nalu_format]
+  defstruct [:decoder_configuration_record] ++ @enforce_keys
 
   @type t() :: %__MODULE__{
           alignment: Membrane.H264.alignment_t(),
