@@ -28,20 +28,6 @@ defmodule Membrane.H264 do
   @type framerate_t :: {frames :: pos_integer, seconds :: pos_integer}
 
   @typedoc """
-  Describes h264 NALu format.
-
-  `:annex_b` (defined in Annex B of [ITU-T H.264 Recommendation](http://www.itu.int/rec/T-REC-H.264-201704-I/en))
-  is suitable for writing to a file or streaming with MPEG-TS.
-  In this format each NAL unit is preceded by three or four-byte start code (`0x(00)000001`)
-  that helps to identify boundaries.
-
-  `:length_prefix` is described by ISO/IEC 14496-15. In such stream NALUs lack the start codes,
-  but are preceded with their length. `:length_prefix` streams are more suitable for placing in containers
-  (e.g. they are used by QuickTime (.mov), MP4, Matroska and FLV).
-  """
-  @type nalu_format_t :: :annex_b | :length_prefix
-
-  @typedoc """
   Describes whether and how buffers are aligned.
 
   `:au` means each buffer contains one Access Unit - all the NAL units required to decode
@@ -79,16 +65,25 @@ defmodule Membrane.H264 do
           | :high_422_intra
           | :high_444_intra
 
+  @typedoc """
+  Format definition for H264 video stream.
+
+  Regardless of the `alignment` value, NAL units are always in the Annex B format.
+
+  In Annex B (defined in ITU-T H.264 Recommendation](http://www.itu.int/rec/T-REC-H.264-201704-I/en))
+  each NAL unit is preceded by three or four-byte start code (`0x(00)000001`)
+  that helps to identify boundaries.
+  Annex B is suitable for writing to a file or streaming with MPEG-TS.
+  """
   @type t :: %__MODULE__{
           width: width_t(),
           height: height_t(),
           framerate: framerate_t(),
-          nalu_format: nalu_format_t(),
           alignment: alignment_t(),
           nalu_in_metadata?: nalu_in_metadata_t(),
           profile: profile_t()
         }
 
-  @enforce_keys [:width, :height, :framerate, :nalu_format, :profile]
+  @enforce_keys [:width, :height, :framerate, :profile]
   defstruct @enforce_keys ++ [alignment: :au, nalu_in_metadata?: false]
 end

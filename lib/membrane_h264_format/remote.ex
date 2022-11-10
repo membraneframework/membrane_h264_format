@@ -1,6 +1,6 @@
 defmodule Membrane.H264.RemoteStream do
   @moduledoc """
-  Format definition for packetized, remote H264 video streams.
+  Module providing format definition for packetized, remote H264 video streams.
 
   Examples of such a stream:
   * H264 depayloaded from a container like FLV, where
@@ -11,9 +11,18 @@ defmodule Membrane.H264.RemoteStream do
   @enforce_keys [:alignment, :nalu_format]
   defstruct [:decoder_configuration_record] ++ @enforce_keys
 
+  @typedoc """
+  Format definition for packetized, remote H264 video streams.
+
+  Regardless of the `alignment` value, NAL units are always in the Annex B format.
+
+  In Annex B (defined in ITU-T H.264 Recommendation](http://www.itu.int/rec/T-REC-H.264-201704-I/en))
+  each NAL unit is preceded by three or four-byte start code (`0x(00)000001`)
+  that helps to identify boundaries.
+  Annex B is suitable for writing to a file or streaming with MPEG-TS.
+  """
   @type t() :: %__MODULE__{
           alignment: Membrane.H264.alignment_t(),
-          decoder_configuration_record: binary() | nil,
-          nalu_format: Membrane.H264.nalu_format_t()
+          decoder_configuration_record: binary() | nil
         }
 end
