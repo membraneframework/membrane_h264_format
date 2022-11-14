@@ -8,8 +8,8 @@ defmodule Membrane.H264.RemoteStream do
   * H264 depayloaded from an RTP stream which is always aligned to
   NAL units.
   """
-  @enforce_keys [:alignment, :nalu_format]
-  defstruct [:decoder_configuration_record] ++ @enforce_keys
+  @enforce_keys [:alignment]
+  defstruct @enforce_keys ++ [:decoder_configuration_record]
 
   @typedoc """
   Format definition for packetized, remote H264 video streams.
