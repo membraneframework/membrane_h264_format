@@ -1,14 +1,28 @@
 defmodule Membrane.H264.RemoteStream do
   @moduledoc """
-  Format definition for H264 video streams with decoder configuration transmitted out of band.
+  Module providing format definition for packetized, remote H264 video streams.
 
-  Example of such a stream is H264 depayloaded from a container like MP4 or FLV, where decoder configuration is signalled outside of the H264 bytestream.
+  Examples of such a stream:
+  * H264 depayloaded from a container like FLV, where
+  decoder configuration is signalled outside of the H264 bytestream.
+  * H264 depayloaded from an RTP stream which is always aligned to
+  NAL units.
   """
-  @enforce_keys [:decoder_configuration_record, :stream_format]
-  defstruct @enforce_keys
+  @enforce_keys [:alignment]
+  defstruct @enforce_keys ++ [:decoder_configuration_record]
 
+  @typedoc """
+  Format definition for packetized, remote H264 video streams.
+
+  Regardless of the `alignment` value, NAL units are always in the Annex B format.
+
+  In Annex B (defined in ITU-T H.264 Recommendation](http://www.itu.int/rec/T-REC-H.264-201704-I/en))
+  each NAL unit is preceded by three or four-byte start code (`0x(00)000001`)
+  that helps to identify boundaries.
+  Annex B is suitable for writing to a file or streaming with MPEG-TS.
+  """
   @type t() :: %__MODULE__{
-          decoder_configuration_record: binary(),
-          stream_format: Membrane.H264.stream_format_t()
+          alignment: Membrane.H264.alignment_t(),
+          decoder_configuration_record: binary() | nil
         }
 end
