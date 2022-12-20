@@ -24,6 +24,8 @@ defmodule Membrane.H264 do
   it is described by 2 integers number of frames per timeframe in seconds.
 
   For example, NTSC's framerate of ~29.97 fps is represented by `{30_000, 1001}`
+  If the information about the framerate is not present in the stream, `nil` value
+  should be used.
   """
   @type framerate_t :: {frames :: pos_integer, seconds :: pos_integer} | nil
 
