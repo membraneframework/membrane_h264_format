@@ -24,8 +24,10 @@ defmodule Membrane.H264 do
   it is described by 2 integers number of frames per timeframe in seconds.
 
   For example, NTSC's framerate of ~29.97 fps is represented by `{30_000, 1001}`
+  If the information about the framerate is not present in the stream, `nil` value
+  should be used.
   """
-  @type framerate_t :: {frames :: pos_integer, seconds :: pos_integer}
+  @type framerate_t :: {frames :: pos_integer, seconds :: pos_integer} | nil
 
   @typedoc """
   Describes whether and how buffers are aligned.
@@ -84,6 +86,6 @@ defmodule Membrane.H264 do
           profile: profile_t()
         }
 
-  @enforce_keys [:width, :height, :framerate, :profile]
-  defstruct @enforce_keys ++ [alignment: :au, nalu_in_metadata?: false]
+  @enforce_keys [:width, :height, :profile]
+  defstruct @enforce_keys ++ [alignment: :au, nalu_in_metadata?: false, framerate: nil]
 end
