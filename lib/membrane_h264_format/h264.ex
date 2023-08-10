@@ -7,7 +7,8 @@ defmodule Membrane.H264 do
   Width of single frame in pixels.
 
   Allowed values may be restricted by used encoding parameters, for example, when using
-  4:2:0 chroma subsampling dimensions must be divisible by 2.
+  4:2:0 chroma subsampling dimensions must be divisible by 2. If the information about the
+  width is not present in the stream, `nil` value should be used.
   """
   @type width :: pos_integer()
 
@@ -15,7 +16,8 @@ defmodule Membrane.H264 do
   Height of single frame in pixels.
 
   Allowed values may be restricted by used encoding parameters, for example, when using
-  4:2:0 chroma subsampling dimensions must be divisible by 2.
+  4:2:0 chroma subsampling dimensions must be divisible by 2. If the information about the
+  height is not present in the stream, `nil` value should be used.
   """
   @type height :: pos_integer()
 
@@ -57,14 +59,16 @@ defmodule Membrane.H264 do
 
   Annex B ([ITU-T H.264 Recommendation](http://www.itu.int/rec/T-REC-H.264-201704-I/en))
   is suitable for writing to file or streaming with MPEG-TS.
-  In this format each NAL unit is preceded by three or four-byte start code (`0x(00)000001`)
+  In this format each NAL unit is prefixed by three or four-byte start code (`0x(00)000001`)
   that helps to identify boundaries.
 
-  avc1 and avc3 are described by ISO/IEC 14496-15. In such stream NALUs lack the start codes,
-  but are preceded with their length. Avc streams are more suitable for placing in containers
-  (e.g. they are used by QuickTime (.mov), MP4, Matroska and FLV). Additionally, the stream's DCR (Decoder Configuration
-  Record) is included. In avc1 streams PPSs and SPSs (Picture Parameter Sets and Sequence Parameter Sets) are transported
-  in the DCR, when in avc3 they may be also present in the stream (in-band).
+  avc1 and avc3 are described by ISO/IEC 14496-15. In such stream a DCR (Decoder Configuration
+  Record) is included and NALUs lack the start codes, but are prefixed with their length.
+  The length of these prefixes is contained in the stream's DCR Avc streams are more suitable for
+  placing in containers (e.g. they are used by QuickTime (.mov), MP4, Matroska and FLV).
+  Additionally, the stream's. In avc1 streams PPSs and SPSs (Picture Parameter Sets and
+  Sequence Parameter Sets) are transported in the DCR, when in avc3 they may be also present in
+  the stream (in-band).
   """
   @type stream_type :: :annexb | {:avc1 | :avc3, dcr :: binary()}
 
