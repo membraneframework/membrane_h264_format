@@ -96,5 +96,11 @@ defmodule Membrane.H264 do
           stream_type: stream_type()
         }
 
-  defstruct [width: nil, height: nil, profile: nil, alignment: :au, nalu_in_metadata?: false, framerate: nil, stream_type: :annexb]
+  defstruct width: nil,
+            height: nil,
+            profile: nil,
+            alignment: :au,
+            nalu_in_metadata?: false,
+            framerate: nil,
+            stream_type: :annexb
 end
