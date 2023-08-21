@@ -55,20 +55,19 @@ defmodule Membrane.H264 do
   @type nalu_in_metadata :: boolean()
 
   @typedoc """
-  Describes h264 stream structure.
+  Describes H264 stream structure.
 
   Annex B ([ITU-T H.264 Recommendation](http://www.itu.int/rec/T-REC-H.264-201704-I/en))
   is suitable for writing to file or streaming with MPEG-TS.
   In this format each NAL unit is prefixed by three or four-byte start code (`0x(00)000001`)
-  that allows to identify boundaries.
+  that allows to identify boundaries between them.
 
   avc1 and avc3 are described by ISO/IEC 14496-15. In such stream a DCR (Decoder Configuration
-  Record) is included as metadata and NALUs lack the start codes, but are prefixed with their length.
-  The length of these prefixes is contained in the stream's DCR Avc streams are more suitable for
+  Record) is included out-of-band and NALUs lack the start codes, but are prefixed with their length.
+  The length of these prefixes is contained in the stream's DCR. AVC streams are more suitable for
   placing in containers (e.g. they are used by QuickTime (.mov), MP4, Matroska and FLV).
-  Additionally, the stream's. In avc1 streams PPSs and SPSs (Picture Parameter Sets and
-  Sequence Parameter Sets) are transported in the DCR, when in avc3 they may be also present in
-  the stream (in-band).
+  In avc1 streams PPSs and SPSs (Picture Parameter Sets and Sequence Parameter Sets) are
+  transported in the DCR, when in avc3 they may be also present in the stream (in-band).
   """
   @type stream_structure :: :annexb | {:avc1 | :avc3, dcr :: binary()}
 
