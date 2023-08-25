@@ -29,7 +29,7 @@ defmodule Membrane.H264 do
   If the information about the framerate is not present in the stream, `nil` value
   should be used.
   """
-  @type framerate :: {frames :: pos_integer, seconds :: pos_integer} | nil
+  @type framerate :: {frames :: pos_integer(), seconds :: pos_integer()} | nil
 
   @typedoc """
   Describes whether and how buffers are aligned.
