@@ -16,7 +16,7 @@ reason, just add the following line to your `deps` in the `mix.exs` and run
 `mix deps.get`.
 
 ```elixir
-{:membrane_h264_format, "~> 0.6.0"}
+{:membrane_h264_format, "~> 0.6.1"}
 ```
 ## Copyright and License
 

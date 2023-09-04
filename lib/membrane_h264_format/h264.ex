@@ -106,4 +106,10 @@ defmodule Membrane.H264 do
             nalu_in_metadata?: false,
             framerate: nil,
             stream_structure: :annexb
+
+  @doc """
+  Checks if stream structure is :avc1 or :avc3
+  """
+  defguard is_avc(stream_structure)
+           when tuple_size(stream_structure) == 2 and elem(stream_structure, 0) in [:avc1, :avc3]
 end
