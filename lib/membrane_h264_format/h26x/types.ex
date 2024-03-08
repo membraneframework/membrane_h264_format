@@ -1,4 +1,8 @@
 defmodule Membrane.H26x.Types do
+  @moduledoc """
+  Defines common types for H26x video fromat.
+  """
+
   @typedoc """
   Width of single frame in pixels.
 
@@ -6,7 +10,7 @@ defmodule Membrane.H26x.Types do
   4:2:0 chroma subsampling dimensions must be divisible by 2. If the information about the
   width is not present in the stream, `nil` value should be used.
   """
-  @type width :: pos_integer()
+  @type width :: pos_integer() | nil
 
   @typedoc """
   Height of single frame in pixels.
@@ -15,7 +19,7 @@ defmodule Membrane.H26x.Types do
   4:2:0 chroma subsampling dimensions must be divisible by 2. If the information about the
   height is not present in the stream, `nil` value should be used.
   """
-  @type height :: pos_integer()
+  @type height :: pos_integer() | nil
 
   @typedoc """
   Number of frames per second. To avoid using floating point numbers,

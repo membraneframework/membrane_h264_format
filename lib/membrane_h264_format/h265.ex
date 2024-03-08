@@ -30,6 +30,7 @@ defmodule Membrane.H265 do
           | :main_10
           | :main_still_picture
           | :rext
+          | nil
 
   @typedoc """
   Format definition for H265 video stream.

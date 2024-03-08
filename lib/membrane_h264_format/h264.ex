@@ -36,6 +36,7 @@ defmodule Membrane.H264 do
           | :high_10_intra
           | :high_422_intra
           | :high_444_intra
+          | nil
 
   @typedoc """
   Format definition for H264 video stream.
