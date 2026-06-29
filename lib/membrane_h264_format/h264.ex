@@ -40,7 +40,7 @@ defmodule Membrane.H264 do
   `:nalu` aligned stream ensures that no NAL unit is split between buffers, but it is possible that
   NALUs required for one frame are in different buffers
 
-  `:none` means the stream hasn't been parsed and is not aligned.
+  `:none` means the stream hasn't been parsed and buffer boundaries are arbitrary.
   """
   @type alignment :: :au | :nalu | :none
 
